@@ -4,18 +4,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>HealthSync - Symptom Checker</title>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <!-- Navigation Bar -->
+
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
-      <a class="navbar-brand" href="index.html"><i class="fas fa-heartbeat me-2"></i> HealthSync</a>
+      <a class="navbar-brand" href="index.html"><i class="fas fa-heartbeat me-2"></i>HealthSync</a>
+
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
@@ -28,52 +33,54 @@
     </div>
   </nav>
 
-  <!-- Symptom Checker Section -->
+
   <div class="container py-4">
+
     <div class="row mb-4">
       <div class="col-12">
         <h2 class="fw-bold">Symptom Checker</h2>
-        <p class="lead">Enter your symptoms to get possible condition matches</p>
+        <p class="lead">Enter symptoms, severity and duration to get meaningful daily-life health insights.</p>
       </div>
     </div>
 
     <div class="row">
-      <!-- Symptom Input Section -->
+
       <div class="col-lg-6">
-        <div class="card symptom-card">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <span>Describe Your Symptoms</span>
-            <i class="fas fa-stethoscope text-primary"></i>
-          </div>
+
+        <div class="card symptom-card mb-3">
+          <div class="card-header">Describe Your Symptoms</div>
           <div class="card-body">
+
             <div class="mb-3">
               <label class="form-label">Select Body Area</label>
               <select class="form-select" id="body-area">
-                <option selected>Head & Neck</option>
+                <option>Head & Neck</option>
                 <option>Chest & Back</option>
                 <option>Abdomen</option>
                 <option>Arms & Hands</option>
                 <option>Legs & Feet</option>
                 <option>Skin</option>
-                <option>General/Whole Body</option>
+                <option selected>General/Whole Body</option>
               </select>
             </div>
 
             <div class="mb-3">
-              <label class="form-label">Describe Your Symptoms</label>
-              <input type="text" class="form-control" id="symptom-input" placeholder="e.g., headache, fever, cough...">
+              <label class="form-label">Symptoms</label>
+              <input type="text" class="form-control" id="symptom-input" placeholder="e.g., fever, headache, dizziness...">
             </div>
 
             <div class="mb-3">
-              <label class="form-label">Symptom Severity</label>
-              <div class="d-flex justify-content-between"><span class="text-muted">Mild</span><span class="text-muted">Severe</span></div>
-              <input type="range" class="form-range" min="1" max="10" id="symptom-severity">
+              <label class="form-label">Severity</label>
+              <div class="d-flex justify-content-between text-muted">
+                <span>Mild</span><span>Severe</span>
+              </div>
+              <input type="range" min="1" max="10" id="symptom-severity" class="form-range">
             </div>
 
             <div class="mb-3">
               <label class="form-label">Duration</label>
               <div class="input-group">
-                <input type="number" class="form-control" placeholder="e.g., 3" id="symptom-duration">
+                <input type="number" class="form-control" id="symptom-duration" placeholder="e.g., 3">
                 <select class="form-select" id="duration-unit">
                   <option>Hours</option>
                   <option>Days</option>
@@ -83,287 +90,233 @@
               </div>
             </div>
 
-            <button class="btn btn-primary w-100" id="analyze-btn"><i class="fas fa-search me-2"></i>Analyze Symptoms</button>
+            <button class="btn btn-primary w-100" id="analyze-btn">
+              <i class="fas fa-search me-2"></i>Analyze Symptoms
+            </button>
+
           </div>
         </div>
 
-        <!-- Common Symptoms -->
         <div class="card">
-          <div class="card-header"><span>Common Symptoms</span></div>
+          <div class="card-header">Common Symptoms</div>
           <div class="card-body">
-            <div class="d-flex flex-wrap">
-              <span class="symptom-tag">Headache</span>
-              <span class="symptom-tag">Fever</span>
-              <span class="symptom-tag">Cough</span>
-              <span class="symptom-tag">Fatigue</span>
-              <span class="symptom-tag">Nausea</span>
-              <span class="symptom-tag">Dizziness</span>
-              <span class="symptom-tag">Muscle Pain</span>
-              <span class="symptom-tag">Sore Throat</span>
-            </div>
+            <span class="symptom-tag">Headache</span>
+            <span class="symptom-tag">Fever</span>
+            <span class="symptom-tag">Cough</span>
+            <span class="symptom-tag">Fatigue</span>
+            <span class="symptom-tag">Nausea</span>
+            <span class="symptom-tag">Dizziness</span>
+            <span class="symptom-tag">Back Pain</span>
+            <span class="symptom-tag">Chest Pain</span>
           </div>
         </div>
+
       </div>
 
-      <!-- Analysis Results -->
-      <div class="col-lg-6">
-        <div class="card analysis-card">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <span>Analysis Results</span>
-            <i class="fas fa-chart-line text-success"></i>
-          </div>
-          <div class="card-body">
-            <div class="alert alert-info">
-              <i class="fas fa-info-circle me-2"></i> Based on your symptoms, here are possible conditions
-            </div>
 
-            <div id="analysis-results">
-              <div class="text-center py-5">
-                <i class="fas fa-clipboard-list fa-3x text-muted mb-3"></i>
-                <p class="text-muted">Enter your symptoms and click "Analyze Symptoms" to see results</p>
-              </div>
+      <div class="col-lg-6">
+
+        <div class="card analysis-card mb-3">
+          <div class="card-header">Analysis Results</div>
+          <div class="card-body" id="analysis-results">
+            <div class="text-center py-5">
+              <i class="fas fa-stethoscope fa-3x text-muted mb-3"></i>
+              <p class="text-muted">Enter symptoms and click "Analyze".</p>
             </div>
           </div>
         </div>
 
-        <!-- Health Tips -->
         <div class="card">
-          <div class="card-header"><span>Health Tips</span></div>
+          <div class="card-header">Health Tips</div>
           <div class="card-body">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Stay hydrated by drinking plenty of water</li>
-              <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Get adequate rest and sleep</li>
-              <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Eat a balanced diet with fruits and vegetables</li>
-              <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Wash hands regularly to prevent infection spread</li>
+              <li class="list-group-item"><i class="fas fa-leaf text-success me-2"></i>Drink enough water daily</li>
+              <li class="list-group-item"><i class="fas fa-bed text-success me-2"></i>Take proper rest</li>
+              <li class="list-group-item"><i class="fas fa-apple-alt text-success me-2"></i>Eat fresh & nutritious foods</li>
+              <li class="list-group-item"><i class="fas fa-hands-wash text-success me-2"></i>Maintain hygiene</li>
             </ul>
           </div>
         </div>
+
       </div>
+
     </div>
+
   </div>
 
-  <!-- Footer -->
+
   <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <h5>HealthSync</h5>
-          <p>Your personal health companion for symptom tracking and analysis.</p>
-        </div>
-        <div class="col-md-3">
-          <h5>Quick Links</h5>
-          <ul class="list-unstyled">
-            <li><a href="index.html" class="text-light">Home</a></li>
-            <li><a href="login.html" class="text-light">Login</a></li>
-            <li><a href="symptom-checker.html" class="text-light">Symptom Checker</a></li>
-            <li><a href="about.html" class="text-light">About Us</a></li>
-            <li><a href="contact.html" class="text-light">Contact</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h5>Connect With Us</h5>
-          <div class="d-flex">
-            <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="text-light"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-        </div>
-      </div>
-      <hr class="my-4 bg-light">
-      <div class="text-center">
-        <p>&copy; HealthSync | All rights reserved | BSc Computing Systems Project</p>
-      </div>
-    </div>
+    <div class="container text-center">
+      <hr class="bg-light">
+      <p>&copy; HealthSync | Health & Wellbeing | BSc Computing Systems Projects
   </footer>
 
-  <!-- Scripts -->
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
+
+
   <script>
-    // Symptom analysis database
-    const symptomDatabase = {
-      'headache': [
-        { name: 'Tension Headache', match: 75, risk: 'low' },
-        { name: 'Migraine', match: 60, risk: 'medium' },
-        { name: 'Sinus Infection', match: 45, risk: 'low' }
-      ],
-      'fever': [
-        { name: 'Common Cold', match: 65, risk: 'low' },
-        { name: 'Influenza (Flu)', match: 80, risk: 'medium' },
-        { name: 'Viral Infection', match: 70, risk: 'medium' }
-      ],
-      'cough': [
-        { name: 'Common Cold', match: 70, risk: 'low' },
-        { name: 'Bronchitis', match: 60, risk: 'medium' },
-        { name: 'Allergies', match: 50, risk: 'low' }
-      ],
-      'fatigue': [
-        { name: 'Anemia', match: 60, risk: 'medium' },
-        { name: 'Chronic Fatigue', match: 55, risk: 'low' },
-        { name: 'Thyroid Issues', match: 45, risk: 'medium' }
-      ],
-      'nausea': [
-        { name: 'Food Poisoning', match: 70, risk: 'medium' },
-        { name: 'Stomach Flu', match: 65, risk: 'low' },
-        { name: 'Migraine', match: 40, risk: 'low' }
-      ],
-      'dizziness': [
-        { name: 'Vertigo', match: 70, risk: 'low' },
-        { name: 'Low Blood Pressure', match: 60, risk: 'medium' },
-        { name: 'Dehydration', match: 55, risk: 'low' }
-      ],
-      'muscle pain': [
-        { name: 'Flu', match: 65, risk: 'low' },
-        { name: 'Fibromyalgia', match: 50, risk: 'low' },
-        { name: 'Overexertion', match: 70, risk: 'low' }
-      ],
-      'sore throat': [
-        { name: 'Strep Throat', match: 65, risk: 'medium' },
-        { name: 'Common Cold', match: 55, risk: 'low' },
-        { name: 'Tonsillitis', match: 45, risk: 'medium' }
-      ]
-    };
 
-    // Symptom combinations
-    const combinationDatabase = {
-      'fever,cough': [
-        { name: 'Influenza (Flu)', match: 85, risk: 'medium' },
-        { name: 'Common Cold', match: 70, risk: 'low' },
-        { name: 'COVID-19', match: 65, risk: 'high' }
-      ],
-      'fever,headache': [
-        { name: 'Flu', match: 80, risk: 'medium' },
-        { name: 'Sinus Infection', match: 60, risk: 'low' },
-        { name: 'Meningitis', match: 30, risk: 'high' }
-      ],
-      'nausea,vomiting': [
-        { name: 'Gastroenteritis', match: 85, risk: 'medium' },
-        { name: 'Food Poisoning', match: 80, risk: 'medium' },
-        { name: 'Migraine', match: 50, risk: 'low' }
-      ],
-      'fever,fatigue,muscle pain': [
-        { name: 'Influenza (Flu)', match: 90, risk: 'medium' },
-        { name: 'Viral Infection', match: 75, risk: 'medium' },
-        { name: 'Mononucleosis', match: 60, risk: 'medium' }
-      ]
-    };
-
-    // Analyze button
-    const analyzeBtn = document.getElementById('analyze-btn');
-    if (analyzeBtn) {
-      analyzeBtn.addEventListener('click', function() {
-        const symptomInput = document.getElementById('symptom-input');
-        if (symptomInput.value.trim() === '') {
-          alert('Please enter at least one symptom.');
-          return;
-        }
-
-        const resultsContainer = document.getElementById('analysis-results');
-        resultsContainer.innerHTML = `
-          <div class="text-center py-4">
-            <div class="spinner-border text-primary mb-3" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-            <p>Analyzing your symptoms...</p>
-          </div>
-        `;
-
-        setTimeout(() => {
-          displayAnalysisResults();
-        }, 1200);
-      });
+  document.addEventListener('DOMContentLoaded', () => {
+    if (!localStorage.getItem('loggedInUser')) {
+      alert("Please login to access the Symptom Checker.");
+      window.location.href = "login.html";
     }
 
-    // Symptom tags click to add
-    const symptomTags = document.querySelectorAll('.symptom-tag');
-    symptomTags.forEach(tag => {
-      tag.addEventListener('click', function() {
-        const symptomInput = document.getElementById('symptom-input');
-        if (symptomInput.value.trim() === '') {
-          symptomInput.value = this.textContent;
-        } else {
-          symptomInput.value += ', ' + this.textContent;
-        }
+    document.querySelectorAll(".symptom-tag").forEach(tag => {
+      tag.addEventListener("click", () => {
+        const input = document.getElementById("symptom-input");
+        input.value = input.value
+          ? input.value + ", " + tag.textContent
+          : tag.textContent;
+      });
+    });
+  });
+
+
+
+  const symptomSynonyms = {
+    "headache": ["head hurts", "pain in head", "heavy head", "head is hurting"],
+    "fever": ["high temperature", "hot body"],
+    "cough": ["dry cough", "wet cough", "coughing"],
+    "fatigue": ["tired", "exhausted", "no energy", "weak"],
+    "dizziness": ["lightheaded", "feel faint", "fainting", "room spinning"],
+    "nausea": ["feel like vomiting", "sick to stomach"],
+    "vomiting": ["throwing up", "vomit", "barfing"],
+    "stomach pain": ["stomach hurts", "belly pain", "abdominal pain"],
+    "chest pain": ["tight chest", "pressure chest", "pain in chest"],
+    "back pain": ["back hurts", "lower back hurting"]
+  };
+
+
+
+  
+  const symptomDatabase = {
+    "headache": ["Migraine", "Tension Headache", "Dehydration"],
+    "fever": ["Flu", "Viral Infection", "Common Cold"],
+    "cough": ["Common Cold", "Bronchitis", "Allergy"],
+    "fatigue": ["Anemia", "Vitamin Deficiency", "Stress"],
+    "dizziness": ["Vertigo", "Low Blood Pressure", "Dehydration"],
+    "nausea": ["Gastritis", "Food Poisoning", "Stomach Flu"],
+    "vomiting": ["Food Poisoning", "Stomach Infection"],
+    "stomach pain": ["Indigestion", "Gastritis", "Food Poisoning"],
+    "chest pain": ["Anxiety", "Heartburn", "Muscle Strain"],
+    "back pain": ["Poor Posture", "Muscle Strain"]
+  };
+
+
+
+  
+  function detectSymptoms(text) {
+    const lower = text.toLowerCase();
+    let found = [];
+
+    Object.keys(symptomDatabase).forEach(sym => {
+      if (lower.includes(sym)) found.push(sym);
+    });
+
+    Object.keys(symptomSynonyms).forEach(sym => {
+      symptomSynonyms[sym].forEach(phrase => {
+        if (lower.includes(phrase)) found.push(sym);
       });
     });
 
-    // Analyze symptoms function
-    function analyzeSymptoms(symptoms) {
-      let results = [];
-      const symptomList = symptoms.toLowerCase().split(',').map(s => s.trim()).filter(Boolean);
+    return [...new Set(found)];
+  }
 
-      // Check for specific combinations (exact match)
-      const combinationKey = symptomList.join(',');
-      if (combinationDatabase[combinationKey]) {
-        return combinationDatabase[combinationKey];
+
+
+
+  function analyzeSymptoms(text, severity, duration) {
+    const detected = detectSymptoms(text);
+    let conditionCounts = {};
+
+    detected.forEach(sym => {
+      if (symptomDatabase[sym]) {
+        symptomDatabase[sym].forEach(cond => {
+          conditionCounts[cond] = (conditionCounts[cond] || 0) + 1;
+        });
       }
+    });
 
-      // Check individual symptoms and aggregate
-      symptomList.forEach(symptom => {
-        if (symptomDatabase[symptom]) {
-          results = results.concat(symptomDatabase[symptom]);
-        }
-      });
+    let results = Object.entries(conditionCounts).map(([cond, count]) => {
 
-      if (results.length === 0) {
-        return [
-          { name: 'Common Viral Infection', match: 50, risk: 'low' },
-          { name: 'General Medical Consultation Recommended', match: 40, risk: 'medium' }
-        ];
-      }
+      let score = Math.min(20 + count * 15 + severity * 3 + duration * 2, 95);
 
-      // Deduplicate and return top 3
-      const uniqueResults = [];
-      const seen = new Set();
-      results.forEach(result => {
-        if (!seen.has(result.name)) {
-          seen.add(result.name);
-          uniqueResults.push(result);
-        }
-      });
+      let risk = "Low";
+      if (score >= 70) risk = "High";
+      else if (score >= 40) risk = "Medium";
 
-      return uniqueResults.slice(0, 3);
+      return { 
+        name: cond, 
+        match: score, 
+        risk: risk 
+      };
+    });
+
+    return { detected, results };
+  }
+
+
+
+ 
+  document.getElementById("analyze-btn").addEventListener("click", () => {
+
+    const input = document.getElementById("symptom-input").value.trim();
+    const severity = parseInt(document.getElementById("symptom-severity").value) || 1;
+    const duration = parseInt(document.getElementById("symptom-duration").value) || 1;
+
+    if (!input) {
+      alert("Please enter symptoms.");
+      return;
     }
 
-    function displayAnalysisResults() {
-      const resultsContainer = document.getElementById('analysis-results');
-      const symptomInput = document.getElementById('symptom-input').value;
-      const conditions = analyzeSymptoms(symptomInput);
+    const analysis = analyzeSymptoms(input, severity, duration);
 
-      let resultsHTML = `<h5>Possible Conditions for: "${symptomInput}"</h5><div class="mt-3">`;
+    if (analysis.detected.length === 0) {
+      document.getElementById("analysis-results").innerHTML =
+        `<p class="text-danger">Couldn't identify symptoms. Try common words like fever, cough, headache.</p>`;
+      return;
+    }
 
-      conditions.forEach(condition => {
-        const riskClass = condition.risk === 'low' ? 'risk-low' : condition.risk === 'medium' ? 'risk-medium' : 'risk-high';
+    let html = `
+      <h5>Detected Symptoms:</h5>
+      <p><strong>${analysis.detected.join(", ")}</strong></p>
 
-        resultsHTML += `
-          <div class="mb-3">
-            <div class="d-flex justify-content-between">
-              <span>${condition.name}</span>
-              <span class="${riskClass}">${condition.match}% Match</span>
-            </div>
-            <div class="progress mt-1">
-              <div class="progress-bar ${condition.risk === 'low' ? 'bg-success' : condition.risk === 'medium' ? 'bg-warning' : 'bg-danger'}" role="progressbar" style="width: ${condition.match}%"></div>
+      <h5>Possible Conditions:</h5>
+    `;
+
+    analysis.results.forEach(r => {
+      html += `
+        <div class="mb-3">
+          <div class="d-flex justify-content-between">
+            <strong>${r.name}</strong>
+            <span>${r.match}% match</span>
+          </div>
+
+          <div class="progress mb-1">
+            <div class="progress-bar
+              ${r.risk === "High" ? "bg-danger" :
+                r.risk === "Medium" ? "bg-warning" : "bg-success"}"
+              style="width:${r.match}%;">
             </div>
           </div>
-        `;
-      });
 
-      resultsHTML += `</div>
-        <div class="alert alert-warning mt-3">
-          <i class="fas fa-exclamation-triangle me-2"></i>
-          <strong>Disclaimer:</strong> These are possible conditions based on common symptoms. Please consult a healthcare professional for accurate diagnosis.
-        </div>`;
+          <p class="small ${
+            r.risk === "High" ? "risk-high" :
+            r.risk === "Medium" ? "risk-medium" : "risk-low"
+          }">
+            Risk Level: ${r.risk}
+          </p>
+        </div>
+      `;
+    });
 
-      resultsContainer.innerHTML = resultsHTML;
-    }
+    document.getElementById("analysis-results").innerHTML = html;
+  });
 
-    function showSymptomCheckerInstructions() {
-      console.log("Symptom Checker page loaded. Use name-based login for full access.");
-    }
-    window.onload = showSymptomCheckerInstructions;
   </script>
 
-  <script src="auth.js"></script>
 </body>
 </html>

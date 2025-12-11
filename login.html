@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
       <a class="navbar-brand" href="index.html"><i class="fas fa-heartbeat me-2"></i> HealthSync</a>
@@ -28,7 +27,6 @@
     </div>
   </nav>
 
-  <!-- Login Section -->
   <div class="container py-5">
     <div class="row justify-content-center">
       <div class="col-md-6 col-lg-4">
@@ -72,7 +70,7 @@
               <div class="small text-muted">
                 <div><strong>Username:</strong> Your name</div>
                 <div><strong>Password:</strong> Your name</div>
-                <div class="mt-2">Valid users: Raj Kishor, Soniya, Prawjal, Saujan</div>
+                <div class="mt-2">Valid users: Raj Kishor, Soniya, Prajwal, Saujan</div>
               </div>
             </div>
 
@@ -82,7 +80,6 @@
     </div>
   </div>
 
-  <!-- Footer -->
   <footer>
     <div class="container">
       <div class="row">
@@ -94,17 +91,46 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    // Valid demo users (username/password = same string)
     const validUsers = [
       { username: "Raj Kishor", password: "Raj Kishor" },
       { username: "Soniya", password: "Soniya" },
-      { username: "Prawjal", password: "Prawjal" },
+      { username: "Prajwal", password: "Prajwal" },
       { username: "Saujan", password: "Saujan" }
     ];
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const loggedUser = localStorage.getItem('loggedInUser');
+      const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+      const navUl = document.querySelector('.navbar-nav');
+
+      navLinks.forEach(a => {
+        if(a.getAttribute('href') === 'login.html' && loggedUser) {
+          a.style.display = 'none';
+        }
+      });
+
+      if(loggedUser) {
+        const li = document.createElement('li');
+        li.className = 'nav-item';
+        li.id = 'signout-nav-item';
+        li.innerHTML = `<a class="nav-link" href="#" id="signout-btn">Sign Out (${loggedUser})</a>`;
+        navUl.appendChild(li);
+
+        document.getElementById('signout-btn').addEventListener('click', function(e) {
+          e.preventDefault();
+          localStorage.removeItem('loggedInUser');
+          localStorage.removeItem('rememberMe');
+          alert('You have signed out.');
+          window.location.href = 'login.html';
+        });
+      }
+
+      if(loggedUser) {
+      }
+    });
 
     document.getElementById('login-form').addEventListener('submit', function (e) {
       e.preventDefault();
@@ -132,7 +158,6 @@
       }
     });
 
-    // Demo login: fill random valid user
     document.getElementById('demo-login').addEventListener('click', function () {
       const randomUser = validUsers[Math.floor(Math.random() * validUsers.length)];
       document.getElementById('username').value = randomUser.username;
@@ -140,7 +165,5 @@
       alert(`Demo credentials filled: ${randomUser.username}. Click Login to continue.`);
     });
   </script>
-
-  <script src="auth.js"></script>
 </body>
 </html>
